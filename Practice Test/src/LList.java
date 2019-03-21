@@ -1,0 +1,40 @@
+
+public class LList {
+	private LLNode head;
+	
+	public LList() {
+		head = null;
+	}
+	
+	public void addAtHead (char newData) {
+		LLNode newNode = new LLNode (newData);
+		newNode.updateNode(head);
+		head = newNode;
+	}
+	
+	public void display() {
+		LLNode temp = head;
+		while (temp != null) {
+			System.out.println (temp.getData());
+			temp = temp.getNext();
+		}
+	}
+	
+	public LLNode deleteAtHead ( ) {
+		LLNode removedOne = head;
+		head = head.getNext();
+		return removedOne;
+	}
+	
+	public boolean isEmpty() {
+		if (head == null)
+			return true;
+		else
+			return false;
+	}// end of isEmpty method
+	
+	public LLNode getHead() {
+		return this.head;
+	}
+	
+}//end of class
