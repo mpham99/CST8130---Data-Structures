@@ -1,0 +1,92 @@
+import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+/*************************************************************************************************************
+ Name: Minh Duc Pham
+ Student number: 040905103
+ Assignment number: #2
+ Date: October 28th, 2018
+
+Purpose:  This class contain the main method, which hold the program's menu.
+Author:  Minh Duc Pham
+Course: F2018 - CST8130
+Lab Section: 303
+
+Data members:  todayDate: MyDate - store the default date
+               lib: Library - object of Library class
+               option: String - menu options - value from 1 to 6
+               keyboard: Scanner - object of Scanner class
+Methods: main  - menu processing which contain the field todayDate (MyDate)
+
+ *************************************************************************************************************/
+public class Assign2 {
+	
+	public static void main (String[]args) throws NoSuchFileException, IOException {
+		
+		MyDate todayDate = new MyDate(15,9,2018);
+		Library lib = new Library();
+		String option;
+		Scanner keyboard = new Scanner(System.in);
+		
+		do {
+			System.out.print("\nEnter 1 to add to resources borrowed, \n"
+					+ "   2 to display overdue items, \n"
+					+ "   3 to display all resources borrowed, \n"
+			        + "   4 to delete a resource, \n"
+			        + "   5 to change today date, \n"
+			        + "   6 to view a specific resource, \n"
+			        + "   7 to read resources from a file, \n"
+			        + "   8 to save the current resources to a file, \n"
+			        + "   9 to quit: ");
+		
+			option = keyboard.next();
+			
+			switch(option) {
+			case "1":
+				lib.inputResource(keyboard, todayDate);
+				break;
+				
+			case "2":
+				lib.resourcesOverDue(todayDate);
+				break;
+				
+			case "3":
+				System.out.println("Items currently borrowed from the library are: \n");
+				lib.toString();
+				break;
+				
+			case "4":
+				lib.deleteResource(keyboard, todayDate);
+				break;
+				
+			case "5":
+				System.out.println("Enter a new date for today's date");
+				todayDate.inputDate(keyboard);
+				break;
+				
+			case "6":
+				System.out.println(lib.viewResource(keyboard));
+				break;
+				
+			case "7":
+				lib.readFile(keyboard);
+				break;
+				
+			case "8":
+				lib.printFile(keyboard);
+				break;
+				
+			case "9":
+				System.out.println("Good Bye!");
+				break;
+				
+			default:
+				System.out.println("Invalid selection ! Please try again");
+			}//end of switch
+			
+		}while(!option.equals("9"));
+		
+		
+	}//end of main
+
+}//end of class
